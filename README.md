@@ -1,5 +1,5 @@
 # Camunda-Spring-Boot
-Spring Boot 2.79 project that integrates the Camunda Engine 7.19.0 using a PostgreSQL database.
+This Spring Boot project integrates Camunda Engine 7.19.0 using a PostgreSQL database and is configured to automatically deploy the .bpmn models and forms associated with it (Camunda Forms and HTML forms).
 
 ## Index
 
