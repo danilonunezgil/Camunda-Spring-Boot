@@ -1,0 +1,48 @@
+{
+  "components": [
+    {
+      "text": "# Verificación de identidad del pasajero",
+      "type": "text",
+      "layout": {
+        "row": "Row_0veemg0",
+        "columns": null
+      },
+      "id": "Field_1k5skkr"
+    },
+    {
+      "label": "Nombre Completo del pasajero",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_13fnjm4",
+        "columns": null
+      },
+      "id": "Field_056tlgj",
+      "key": "fullNamePassenger",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0lpbxah",
+        "columns": null
+      },
+      "id": "Field_0zqj9lk",
+      "key": "idPassenger",
+      "validate": {
+        "required": true
+      }
+    }
+  ],
+  "type": "default",
+  "id": "passengerInfo",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.10.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
