@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1h0subv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:collaboration id="Collaboration_0ug4m0r">
+    <bpmn:participant id="Participant_0inswac" name="Migration Team" processRef="Process_0ngmg51" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0ngmg51" name="Migration Process" isExecutable="true" camunda:versionTag="1" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="Event_0qmctug" name="A passenger wants to leave the country">
+      <bpmn:outgoing>Flow_1u6qunv</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_02amokk" name="Check passenger identity" camunda:formRef="passengerInfo" camunda:formRefBinding="latest">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="fullNamePassenger">${fullNamePassenger}</camunda:outputParameter>
+          <camunda:outputParameter name="idPassenger">${idPassenger}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1u6qunv</bpmn:incoming>
+      <bpmn:outgoing>Flow_1vteu4b</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_00wdyxn" name="Conduct security inspection">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="substances" label="Are there foreing substances in the scanner? " type="boolean" />
+          <camunda:formField id="weapons" label="Are there weapons in the scanner?" type="boolean" />
+          <camunda:formField id="antecedents" label="Is there a antecedents record? " type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1vteu4b</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mzmu2x</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_019zs4c" name="Obtain immigration approval" camunda:formKey="embedded:app:forms/avalForm.html">
+      <bpmn:incoming>Flow_0mzmu2x</bpmn:incoming>
+      <bpmn:outgoing>Flow_0chf4mk</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1lb6myk" name="Passenger boards the plane">
+      <bpmn:incoming>Flow_0chf4mk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1u6qunv" sourceRef="Event_0qmctug" targetRef="Activity_02amokk" />
+    <bpmn:sequenceFlow id="Flow_1vteu4b" sourceRef="Activity_02amokk" targetRef="Activity_00wdyxn" />
+    <bpmn:sequenceFlow id="Flow_0mzmu2x" sourceRef="Activity_00wdyxn" targetRef="Activity_019zs4c" />
+    <bpmn:sequenceFlow id="Flow_0chf4mk" sourceRef="Activity_019zs4c" targetRef="Event_1lb6myk" />
+    <bpmn:textAnnotation id="TextAnnotation_1tq5jpm">
+      <bpmn:text>Camunda Form implementation</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1nluf54">
+      <bpmn:text>Generated task form implementation</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0plr2s0">
+      <bpmn:text>Embedded or external task form</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_14uczwv" sourceRef="Activity_02amokk" targetRef="TextAnnotation_1tq5jpm" />
+    <bpmn:association id="Association_0cmefet" sourceRef="Activity_00wdyxn" targetRef="TextAnnotation_1nluf54" />
+    <bpmn:association id="Association_0f63ijk" sourceRef="Activity_019zs4c" targetRef="TextAnnotation_0plr2s0" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0ug4m0r">
+      <bpmndi:BPMNShape id="Participant_0inswac_di" bpmnElement="Participant_0inswac" isHorizontal="true">
+        <dc:Bounds x="129" y="80" width="902" height="338" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1tq5jpm_di" bpmnElement="TextAnnotation_1tq5jpm">
+        <dc:Bounds x="390" y="120" width="100" height="41" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1nluf54_di" bpmnElement="TextAnnotation_1nluf54">
+        <dc:Bounds x="560" y="113" width="100" height="55" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0plr2s0_di" bpmnElement="TextAnnotation_0plr2s0">
+        <dc:Bounds x="780" y="113" width="100" height="55" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0tbiq1s" bpmnElement="Event_0qmctug">
+        <dc:Bounds x="192" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="167" y="275" width="89" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bjykfg_di" bpmnElement="Activity_02amokk">
+        <dc:Bounds x="290" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17tufw1_di" bpmnElement="Activity_00wdyxn">
+        <dc:Bounds x="490" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mb2uey_di" bpmnElement="Activity_019zs4c">
+        <dc:Bounds x="680" y="210" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1lb6myk_di" bpmnElement="Event_1lb6myk">
+        <dc:Bounds x="908" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="881" y="275" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_14uczwv_di" bpmnElement="Association_14uczwv">
+        <di:waypoint x="372" y="210" />
+        <di:waypoint x="419" y="161" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0cmefet_di" bpmnElement="Association_0cmefet">
+        <di:waypoint x="561" y="210" />
+        <di:waypoint x="589" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0f63ijk_di" bpmnElement="Association_0f63ijk">
+        <di:waypoint x="762" y="210" />
+        <di:waypoint x="798" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u6qunv_di" bpmnElement="Flow_1u6qunv">
+        <di:waypoint x="228" y="250" />
+        <di:waypoint x="290" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1vteu4b_di" bpmnElement="Flow_1vteu4b">
+        <di:waypoint x="390" y="250" />
+        <di:waypoint x="490" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mzmu2x_di" bpmnElement="Flow_0mzmu2x">
+        <di:waypoint x="590" y="250" />
+        <di:waypoint x="680" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0chf4mk_di" bpmnElement="Flow_0chf4mk">
+        <di:waypoint x="780" y="250" />
+        <di:waypoint x="908" y="250" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

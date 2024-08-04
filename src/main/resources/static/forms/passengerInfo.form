@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "text": "# Verificación de identidad del pasajero",
+      "text": "# Checking passenger identity",
       "type": "text",
       "layout": {
         "row": "Row_0veemg0",
@@ -10,7 +10,7 @@
       "id": "Field_1k5skkr"
     },
     {
-      "label": "Nombre Completo del pasajero",
+      "label": "Passenger Full Name",
       "type": "textfield",
       "layout": {
         "row": "Row_13fnjm4",
@@ -40,9 +40,9 @@
   "id": "passengerInfo",
   "exporter": {
     "name": "Camunda Modeler",
-    "version": "5.10.0"
+    "version": "5.19.0"
   },
   "executionPlatform": "Camunda Platform",
   "executionPlatformVersion": "7.19.0",
-  "schemaVersion": 8
+  "schemaVersion": 14
 }

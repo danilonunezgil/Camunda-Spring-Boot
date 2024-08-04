@@ -19,13 +19,9 @@ To use this program you need the following:
 
 1. **Version control system**: Install GIT from the [GIT official website](https://git-scm.com/downloads).
 
-2. **IntelliJ IDEA or VSCODE**: To run and/or modify the project.
+2. **IntelliJ IDEA or VSCODE**: To modify the project if it's necessary.
 
-3. **Java 17 or higher**: You can get help to download and install the java version by following [this link](https://www.youtube.com/watch?v=oAin-q1oTDw&pp=ygUXY29tbyBjb25maWd1cmFyIGphdmEgMTc%3D)
-
-4. **Maven 3.9**: You can get help to download and install the maven version by following [this link](https://www.youtube.com/watch?v=1QfiyR_PWxU&pp=ygUSaW5zdGFsYXIgbWF2ZW4gMy45)
-
-5. **PostgreSQL**: To storage Camunda Engine schema. [PostgreSQL official website](https://www.postgresql.org/download/) 
+3. **Docker**: Install from the [Docker official website](https://www.docker.com/) 
 
 ## Usage
 
@@ -37,41 +33,52 @@ To use the program you must do:
    https://github.com/danilonunezgil/Camunda-Spring-Boot.git
    ```
 
-2. Open the **Camunda-Spring-Boot** program with IntelliJ or VSCODE and run it
-
-3. Create a .env file in project root folder with the following settings:
+2. Create a .env file in project root folder with the following settings:
 
    ```
-    SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/camunda_engine
-    SPRING_DATASOURCE_USERNAME=postgres
-    SPRING_DATASOURCE_PASSWORD=password
-    
-    SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    SPRING_JPA_SHOW_SQL=true
-    
-    CAMUNDA_BPM_ADMIN_USER_ID=demo
-    CAMUNDA_BPM_ADMIN_USER_PASSWORD=demo
-    CAMUNDA_BPM_ADMIN_USER_FIRST_NAME=Danno
-    CAMUNDA_BPM_ADMIN_USER_LAST_NAME=NZ
-    CAMUNDA_BPM_ADMIN_USER_EMAIL=danilo.gil98@gmail.com
-   ```
-4. Perform the following configuration so that the environment variables are recognized:
-
-   1. Select *Application* and *Edit Configurations...*
-
-      ![Edit Configurations](docs/step1.png)
-
-   2. In *Modify options* select *Environment variables*
-      
-      ![Environment variables](docs/step2.png)
+   # Database configuration
+   SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/camunda_engine
+   SPRING_DATASOURCE_USERNAME=postgres
+   SPRING_DATASOURCE_PASSWORD=admin
    
-   3. Find .env file and select it
-      
-      ![Select env file](docs/step3.png)
+   # PostgreSQL configuration
+   POSTGRES_DB=camunda_engine
+   POSTGRES_USER=postgres
+   POSTGRES_PASSWORD=admin
+   
+   # JPA configuration
+   SPRING_JPA_HIBERNATE_DDL_AUTO=update
+   SPRING_JPA_SHOW_SQL=true
+   
+   # Camunda configuration
+   CAMUNDA_BPM_ADMIN_USER_ID=demo
+   CAMUNDA_BPM_ADMIN_USER_PASSWORD=demo
+   CAMUNDA_BPM_ADMIN_USER_FIRST_NAME=Danno
+   CAMUNDA_BPM_ADMIN_USER_LAST_NAME=Nunez
+   CAMUNDA_BPM_ADMIN_USER_EMAIL=danilo.gil98@gmail.com
+   ```
+3. Open a terminal inside **Camunda-Spring-Boot** and run the project with:
 
+   ```
+   docker-compose up --build -d
+   ```
 
-5. If the .env file has no problem, you can run the program and access it at the address:
+   * The project will be built:
+
+   ![Building project](docs/building-project.png)
+
+   * The project containers were built
+         
+   ![Building project](docs/containers-is-run.png)
+
+4. You can run the program and access it at the address:
    
    ```
    http://localhost:8080/
    ```
+   * In the Camunda login you can access with credentials defined in the .env:
+   ![Camunda Login](docs/camunda-index.png)
+   * Camunda Engine is ready to use:
+   ![Camunda Engine](docs/camunda-engine.png)
+   * Process deployed:
+   ![Process Deployed](docs/process-deployed.png)
