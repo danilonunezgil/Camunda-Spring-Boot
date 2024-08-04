@@ -80,5 +80,5 @@ To use the program you must do:
    ![Camunda Login](docs/camunda-index.png)
    * Camunda Engine is ready to use:
    ![Camunda Engine](docs/camunda-engine.png)
-   * Process deployed:
+   * Process deployed and process instances running:
    ![Process Deployed](docs/process-deployed.png)
